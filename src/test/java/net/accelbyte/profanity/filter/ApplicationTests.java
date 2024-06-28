@@ -1,6 +1,6 @@
-package net.accelbyte;
+package net.accelbyte.profanity.filter;
 
-import net.accelbyte.config.MockedAppConfiguration;
+import net.accelbyte.profanity.filter.config.MockedAppConfiguration;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;

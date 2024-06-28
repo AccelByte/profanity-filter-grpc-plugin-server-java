@@ -1,17 +1,9 @@
-package net.accelbyte.service;
+package net.accelbyte.profanity.filter.service;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.Metadata;
-import net.accelbyte.config.MockedAppConfiguration;
-//import net.accelbyte.chatv2.filter.ChatMessage;
-//import net.accelbyte.chatv2.filter.ChatMessageBulk;
-//import net.accelbyte.chatv2.filter.FilterServiceGrpc;
-//import net.accelbyte.chatv2.filter.HealthCheckRequest;
-//import net.accelbyte.chatv2.filter.HealthCheckResponse;
-//import net.accelbyte.chatv2.filter.MessageBatchResult;
-//import net.accelbyte.chatv2.filter.FilterServiceGrpc.FilterServiceBlockingStub;
-//import net.accelbyte.chatv2.filter.HealthCheckResponse.ServingStatus;
+import net.accelbyte.profanity.filter.config.MockedAppConfiguration;
 import net.accelbyte.profanityfilter.registered.v1.ExtendProfanityValidationRequest;
 import net.accelbyte.profanityfilter.registered.v1.ExtendProfanityValidationResponse;
 import net.accelbyte.profanityfilter.registered.v1.ProfanityFilterServiceGrpc;
@@ -25,8 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
-import java.time.Instant;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -36,7 +26,7 @@ import static org.mockito.ArgumentMatchers.anyInt;
         classes = MockedAppConfiguration.class,
         properties = "spring.main.allow-bean-definition-overriding=true"
 )
-class ChatFilterServiceTests {
+class ProfanityFilterServiceTests {
         private ManagedChannel channel;
 
         private final Metadata header = new Metadata();
@@ -52,9 +42,6 @@ class ChatFilterServiceTests {
                 channel = ManagedChannelBuilder.forAddress("localhost", port)
                         .usePlaintext()
                         .build();
-
-                Metadata.Key<String> key = Metadata.Key.of("authorization", Metadata.ASCII_STRING_MARSHALLER);
-                header.put(key, "Bearer abc");
         }
 
         @Test

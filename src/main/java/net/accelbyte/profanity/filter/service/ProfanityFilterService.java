@@ -1,4 +1,4 @@
-package net.accelbyte.service;
+package net.accelbyte.profanity.filter.service;
 import org.lognet.springboot.grpc.GRpcService;
 
 import io.grpc.stub.StreamObserver;

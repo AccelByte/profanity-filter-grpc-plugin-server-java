@@ -21,7 +21,7 @@ pipeline {
     stage('Push') {
       steps {
         script {
-          sh "git checkout master"
+          sh "git checkout main"
           sshagent(credentials: [githubSsh])
           {
             sh "git push ${githubUrl} HEAD:main"

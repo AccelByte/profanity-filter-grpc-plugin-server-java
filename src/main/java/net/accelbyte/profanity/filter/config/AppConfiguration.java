@@ -1,4 +1,4 @@
-package net.accelbyte.config;
+package net.accelbyte.profanity.filter.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.accelbyte.sdk.core.AccelByteConfig;

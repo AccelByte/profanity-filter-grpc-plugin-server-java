@@ -1,4 +1,4 @@
-package net.accelbyte.grpc;
+package net.accelbyte.profanity.filter.interceptor;
 
 import io.grpc.*;
 import io.grpc.health.v1.HealthGrpc;
@@ -16,34 +16,27 @@ import java.util.Objects;
 @Slf4j
 @GRpcGlobalInterceptor
 @Order(20)
-public class AuthServerInterceptor implements ServerInterceptor {
+public class AuthInterceptor implements ServerInterceptor {
 
-    private final AccelByteSDK sdk;
+    private AccelByteSDK sdk;
 
-    private final String namespace;
+    private String namespace;
 
     @Value("${plugin.grpc.server.interceptor.auth.enabled}")
     private boolean enabled;
 
-
     @Autowired
-    public AuthServerInterceptor(AccelByteSDK sdk,
-                                 @Value("${app.namespace}") String namespace) {
-
+    public AuthInterceptor(AccelByteSDK sdk,
+                           @Value("${app.namespace}") String namespace) {
         this.sdk = sdk;
         this.namespace = namespace;
-
-        log.info("AuthServerInterceptor initialized");
+        log.info("AuthInterceptor enabled: {})", enabled);
     }
 
     @Override
     public <ReqT, RespT> ServerCall.Listener<ReqT> interceptCall(ServerCall<ReqT, RespT> call, Metadata headers,
             ServerCallHandler<ReqT, RespT> next) {
-        if (!enabled) {
-            return next.startCall(call, headers);
-        }
-
-        try {
+        if (enabled) {
             if (Objects.equals(call.getMethodDescriptor().getServiceName(), HealthGrpc.SERVICE_NAME)) {
                 return next.startCall(call, headers); // skip validation if health check
             }
@@ -64,15 +57,11 @@ public class AuthServerInterceptor implements ServerInterceptor {
                 unAuthorizedCall(call, headers);
             }
             if (Strings.isBlank(tokenPayload.getExtendNamespace())
-                    || !Objects.equals(tokenPayload.getExtendNamespace(), namespace)) {
+                || !Objects.equals(tokenPayload.getExtendNamespace(), namespace)) {
                 log.error("Invalid extend namespace");
                 unAuthorizedCall(call, headers);
             }
-        } catch (Exception e) {
-            log.error("Authorization error", e);
-            unAuthorizedCall(call, headers);
         }
-
         return next.startCall(call, headers);
     }
 

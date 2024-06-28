@@ -1,6 +1,5 @@
 app:
   namespace: test
-
 plugin:
   grpc:
     server:
