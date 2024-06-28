@@ -11,7 +11,7 @@ import net.accelbyte.profanityfilter.registered.v1.ProfanityFilterServiceGrpc;
 @Slf4j
 @GRpcService
 public class ProfanityFilterService extends ProfanityFilterServiceGrpc.ProfanityFilterServiceImplBase {
-    private static final String PROFANITY_REGEX = ".*\\b(bad|awful|fuck)\\b.*";   // Matches "bad" or "awful" or "fuck"
+    private static final String PROFANITY_REGEX = ".*\\b(bad|awful)\\b.*";   // Matches "bad" or "awful"
 
     @Override
     public void validate(ExtendProfanityValidationRequest request, StreamObserver<ExtendProfanityValidationResponse> responseObserver) {

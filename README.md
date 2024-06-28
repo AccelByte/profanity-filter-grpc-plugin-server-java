@@ -201,7 +201,7 @@ The custom functions in this sample app can be tested locally using [postman](ht
 
       ```json
       {
-          "value": "fuck"
+          "value": "bad"
       }
       ```
 
