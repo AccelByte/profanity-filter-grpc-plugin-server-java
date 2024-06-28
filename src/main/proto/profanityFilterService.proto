@@ -10,14 +10,15 @@ option java_package = "net.accelbyte.profanityfilter.registered.v1";
 
 service ProfanityFilterService {
 
-    rpc Validate(ExtendProfanityValidationRequest) returns (ExtendProfanityValidationResponse);
+  rpc Validate(ExtendProfanityValidationRequest) returns (ExtendProfanityValidationResponse);
 }
 
 message ExtendProfanityValidationRequest {
-    string value = 1; // the value needs to be validated
+  string value = 1; // the value needs to be validated
+  string userId = 2; // user id
 }
 
 message ExtendProfanityValidationResponse {
-    bool isProfane = 1;     // indicates whether the value is profane or not
-    string message = 2;     // if valid is false, message will provide the detailed error message
+  bool isProfane = 1;     // indicates whether the value is profane or not
+  string message = 2;     // if valid is false, message will provide the detailed error message
 }
