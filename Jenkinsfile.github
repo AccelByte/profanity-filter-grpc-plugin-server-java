@@ -1,5 +1,5 @@
 githubOwner = 'AccelByte'
-githubRepo = 'profanity-filter-grpc-plugin-server-csharp'
+githubRepo = 'profanity-filter-grpc-plugin-server-java'
 githubSsh = 'accelbyte-sdk-sdkbuild-ssh'
 
 githubUrl = "git@github.com:${githubOwner}/${githubRepo}.git"
