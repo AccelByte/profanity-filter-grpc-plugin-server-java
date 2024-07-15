@@ -1,7 +1,7 @@
 FROM debian:12
 WORKDIR /workspace
 RUN apt update \
-        && apt install -y bash curl git jq make openjdk-17-jdk-headless \
+        && apt install -y bash curl git jq make openjdk-17-jdk-headless xxd \
         && apt clean \
         && rm -rf /var/lib/apt/lists/*
 RUN ARCH=$(uname -m | sed -e s/x86_64/amd64/ -e s/aarch64/arm64/) \
