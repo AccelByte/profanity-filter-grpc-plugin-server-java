@@ -107,8 +107,8 @@ custom functions for validating profanity payloads.
 
    a. Base URL
    
-      - For `Starter` tier e.g.  https://spaceshooter.prod.gamingservices.accelbyte.io
-      - For `Premium` tier e.g.  https://dev.accelbyte.io
+      - Sample URL for AGS Shared Cloud customers: `https://spaceshooter.prod.gamingservices.accelbyte.io`
+      - Sample URL for AGS Private Cloud customers: `https://dev.accelbyte.io`
       
    b. [Create a Game Namespace](https://docs.accelbyte.io/gaming-services/tutorials/how-to/create-a-game-namespace/) if you don't have one yet. Keep the `Namespace ID`.
 
@@ -237,10 +237,10 @@ the `gRPC server` needs to be exposed to the internet. To do this without requir
 
 4. [Create an OAuth Client](https://docs.accelbyte.io/guides/access/iam-client.html) with `confidential` client type with the following permissions.  Keep the `Client ID` and `Client Secret`. This is different from the Oauth Client from the Prerequisites section and it is required by CLI demo app [here](demo/cli/) in the next step to register the `gRPC Server` URL.
    
-   - For AGS Premium customers:
+   - For AGS Private Cloud customers:
         - `ADMIN:NAMESPACE:{namespace}:PROFANITY:FILTER [UPDATE,DELETE]`
         - `ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]`
-    - For AGS Starter customers:
+    - For AGS Shared Cloud customers:
         - Profanity Filter -> Filter (Update, Delete)
         - Profanity Filter -> Filter Profane (Read)
 
